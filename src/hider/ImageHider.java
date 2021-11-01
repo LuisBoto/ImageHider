@@ -1,21 +1,24 @@
 package hider;
 
 public class ImageHider {
-	
-	private ImageReader imgReader;
+
+	private ImageWriteReader imgWriteReader;
 	private Steganographer steganographer;
-	
-	public void main(String[] args) {
-		new ImageHider().hide(args[0], args[1]);
+
+	public static void main(String[] args) {
+		//new ImageHider().hide(args[0], args[1]);
+		new ImageHider().hide("./madre.png", "sableye.png");
 	}
-	
+
 	public ImageHider() {
-		this.imgReader = new ImageReader();
+		this.imgWriteReader = new ImageWriteReader();
 		this.steganographer = new Steganographer();
 	}
-	
+
 	public void hide(String canvasImageUrl, String secretImageUrl) {
-		this.steganographer.hide(this.imgReader.readImage(canvasImageUrl), this.imgReader.readImage(secretImageUrl));
+		this.imgWriteReader.writeImage(this.steganographer.hide(
+				this.imgWriteReader.readImage(canvasImageUrl),
+				this.imgWriteReader.readImage(secretImageUrl)));
 	}
 
 }

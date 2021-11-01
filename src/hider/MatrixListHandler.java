@@ -28,23 +28,27 @@ public class MatrixListHandler {
 		}
 	}
 	
+	public boolean hasNextInt() {
+		return !(this.dataIndex >= this.data.size());
+	}
+	
 	public int getNextInt() {
-		if (this.dataIndex >= this.data.size())
-			return -1;
 		int result = this.data.get(dataIndex);
 		this.dataIndex++;
 		return result;
 	}
 	
 	public void setNextInt(int value) {
-		//if (this.xCoordinate >= this.matrix.length || this.yCoordinate >= this.matrix[xCoordinate].length)
-		//	throw new Exception("Invalid set");
-		this.matrix[this.xCoordinate][this.yCoordinate] = value;
 		if (this.yCoordinate >= this.matrix[this.xCoordinate].length) {
 			this.xCoordinate++;
 			this.yCoordinate = 0;
-		} else
-			this.yCoordinate++;
+		} 			
+		this.matrix[this.xCoordinate][this.yCoordinate] = value;
+		this.yCoordinate++;
+	}
+
+	public int[][] getMatrix() {
+		return this.matrix;
 	}
 
 }
