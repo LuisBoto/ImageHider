@@ -6,6 +6,11 @@ public class ImageHider {
 	private Steganographer steganographer;
 
 	public static void main(String[] args) {
+		if (args.length <= 0 || args[0].equals("--help")) {
+			Messages.HELP.println();
+			System.exit(0);
+		}
+		
 		String output;
 		if (args[0].equals("--hide")) {
 			output = "./hiddenOutput.png";
