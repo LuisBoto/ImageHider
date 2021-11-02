@@ -2,6 +2,8 @@ package hider.imageHandling;
 
 import java.awt.image.BufferedImage;
 
+import hider.Messages;
+
 public class ImageRevealHandler extends ImageHandler {
 
 	private int totalSecretPixels;
@@ -20,6 +22,7 @@ public class ImageRevealHandler extends ImageHandler {
 	}
 	
 	private void unmerge() {
+		Messages.UNMERGING_IMAGES.println();
 		MatrixListHandler canvasHandler = new MatrixListHandler(this.canvasPixels);
 		MatrixListHandler secretHandler = new MatrixListHandler(this.secretPixels);
 		int canvasPixel1, canvasPixel2, canvasCounter = 0, nextPixelPair = 0, secretPixelCount = 0;
@@ -40,6 +43,7 @@ public class ImageRevealHandler extends ImageHandler {
 	}
 
 	private void readSecretMetadata() {
+		Messages.READING_METADATA.println();
 		int width = 0x00ffffff & this.canvasPixels[this.canvasPixels.length - 1][this.canvasPixels[0].length - 1];
 		int height = 0x00ffffff & this.canvasPixels[this.canvasPixels.length - 1][this.canvasPixels[0].length - 2];
 		this.secretImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

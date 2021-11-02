@@ -36,12 +36,14 @@ public class ImageHider {
 				this.imgWriteReader.readImage(canvasImageUrl),
 				this.imgWriteReader.readImage(secretImageUrl)),
 				outputUrl);
+		Messages.IMAGE_HIDDEN_SUCCESSFULLY.println();
 	}
 
 	public void reveal(String canvasImageUrl, String outputUrl) {
 		this.imgWriteReader.writeImage(this.steganographer.reveal(
 				this.imgWriteReader.readImage(canvasImageUrl)),
 				outputUrl);
+		Messages.IMAGE_EXTRACTED_SUCCESSFULLY.println();
 	}
 
 }

@@ -2,6 +2,8 @@ package hider.imageHandling;
 
 import java.awt.image.BufferedImage;
 
+import hider.Messages;
+
 public class ImageHiderHandler extends ImageHandler {
 
 	private BufferedImage resultImage;
@@ -27,6 +29,7 @@ public class ImageHiderHandler extends ImageHandler {
 	}
 
 	private void merge() {
+		Messages.MERGING_IMAGES.println();
 		MatrixListHandler canvasHandler = new MatrixListHandler(this.canvasPixels);
 		MatrixListHandler secretHandler = new MatrixListHandler(this.secretPixels);
 		MatrixListHandler resultHandler = new MatrixListHandler(this.resultPixels);
@@ -48,6 +51,7 @@ public class ImageHiderHandler extends ImageHandler {
 	}
 
 	private void setTailingPixelMetadata() {
+		Messages.SETTING_METADATA.println();
 		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = this.secretImage.getWidth();
 		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = this.secretImage.getHeight();
 	}

@@ -33,6 +33,7 @@ public class Steganographer {
 	}
 
 	private void checkHideImageDimensions() {
+		Messages.READING_IMAGE_FILES.println();
 		int canvasArea = this.canvasImage.getHeight() * this.canvasImage.getWidth();
 		int secretArea = this.secretImage.getHeight() * this.secretImage.getWidth();
 		if (canvasArea < (2 * secretArea + Steganographer.METADATA_PIXELS)) {
@@ -42,6 +43,7 @@ public class Steganographer {
 	}
 
 	private void checkImageRevealMetadata() {
+		Messages.READING_IMAGE_FILES.println();
 		int width = 0x00ffffff & this.canvasImage.getRGB(this.canvasImage.getWidth() - 1, this.canvasImage.getHeight() - 1);
 		int height = 0x00ffffff	& this.canvasImage.getRGB(this.canvasImage.getWidth() - 1, this.canvasImage.getHeight() - 2);
 		double secretArea = Math.abs(width * height);
