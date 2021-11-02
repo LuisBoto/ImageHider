@@ -19,9 +19,9 @@ public class BinaryConverter {
 		int redSecret = (secret & 0xff0000);// >> 16;
 		// int alphaSecret = (secret & 0xff000000) >>> 24;
 
-		blueCanvas = (blueCanvas & 0xf0) | (blueSecret & 0xf0);
-		greenCanvas = (greenCanvas & 0xf000) | (greenSecret & 0xf000);
-		redCanvas = (redCanvas & 0xf00000) | (redSecret & 0xf00000);
+		blueCanvas = (blueCanvas & 0xf0) | ((blueSecret & 0xf0) >> 4);
+		greenCanvas = (greenCanvas & 0xf000) | ((greenSecret & 0xf000) >> 4);
+		redCanvas = (redCanvas & 0xf00000) | ((redSecret & 0xf00000) >> 4);
 		return redCanvas | greenCanvas | blueCanvas | alphaCanvas;
 	}
 
