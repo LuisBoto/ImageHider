@@ -1,4 +1,4 @@
-package hider;
+package hider.pictureHiding;
 
 import java.util.ArrayList;
 import java.util.List;

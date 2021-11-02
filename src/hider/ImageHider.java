@@ -20,5 +20,9 @@ public class ImageHider {
 				this.imgWriteReader.readImage(canvasImageUrl),
 				this.imgWriteReader.readImage(secretImageUrl)));
 	}
+	
+	public void reveal(String canvasImageUrl) {
+		
+	}
 
 }

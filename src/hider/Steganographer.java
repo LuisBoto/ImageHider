@@ -2,14 +2,16 @@ package hider;
 
 import java.awt.image.BufferedImage;
 
+import hider.pictureHiding.ImageHiderHandler;
+
 public class Steganographer {
 
 	private BufferedImage canvasImage;
 	private BufferedImage secretImage;
-	private ImageHandler imgHandler;
+	private ImageHiderHandler imgHandler;
 
 	public Steganographer() {
-		this.imgHandler = new ImageHandler();
+		this.imgHandler = new ImageHiderHandler();
 	}
 
 	public BufferedImage hide(BufferedImage canvasImage, BufferedImage secretImage) {
@@ -23,7 +25,7 @@ public class Steganographer {
 	private void checkImageDimensions() {
 		int canvasArea = this.canvasImage.getHeight() * this.canvasImage.getWidth();
 		int secretArea = this.secretImage.getHeight() * this.secretImage.getWidth();
-		if (canvasArea < (2 * secretArea + 1)) {
+		if (canvasArea < (2 * secretArea + 3)) {
 			System.out.println("Canvas image is too small.");
 			System.exit(1);
 		}
