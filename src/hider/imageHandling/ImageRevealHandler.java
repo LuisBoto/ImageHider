@@ -28,11 +28,11 @@ public class ImageRevealHandler extends ImageHandler {
 		int canvasPixel1, canvasPixel2, canvasCounter = 0, nextPixelPair = 0, secretPixelCount = 0;
 		while (canvasHandler.hasNextInt() && secretPixelCount < this.totalSecretPixels) {
 			if (canvasCounter == nextPixelPair) {
-				nextPixelPair = canvasCounter + 2 + ratio;
+				canvasCounter++;
+				nextPixelPair = canvasCounter + ratio;
 				canvasPixel1 = canvasHandler.getNextInt();
 				canvasPixel2 = canvasHandler.getNextInt();
 				secretHandler.setNextInt(this.binaryConverter.unmergeSecretPixel(canvasPixel1, canvasPixel2));
-				canvasCounter++;
 				secretPixelCount++;
 			} else {
 				canvasHandler.getNextInt();

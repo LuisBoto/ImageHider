@@ -36,11 +36,11 @@ public class ImageHiderHandler extends ImageHandler {
 		int secretPixel, canvasPixel, counter = 0, nextPixelPair = 0;
 		while (canvasHandler.hasNextInt()) {
 			if (counter == nextPixelPair && secretHandler.hasNextInt()) {
-				nextPixelPair = counter + 2 + ratio;
+				counter++;
+				nextPixelPair = counter + ratio;
 				secretPixel = secretHandler.getNextInt();
 				resultHandler.setNextInt(this.binaryConverter.mergeFirstHalfs(canvasHandler.getNextInt(), secretPixel));
 				resultHandler.setNextInt(this.binaryConverter.mergeSecondHalfs(canvasHandler.getNextInt(), secretPixel));
-				counter++;
 			} else {
 				canvasPixel = canvasHandler.getNextInt();
 				resultHandler.setNextInt(canvasPixel);
