@@ -22,7 +22,7 @@ public class ImageHiderHandler extends ImageHandler {
 		
 		this.merge();
 		this.setTailingPixelMetadata();
-		this.resultImage = this.writeImagePixels(this.resultImage, this.resultPixels);
+		this.writeImagePixels(this.resultImage, this.resultPixels);
 		return this.resultImage;
 	}
 
@@ -50,7 +50,6 @@ public class ImageHiderHandler extends ImageHandler {
 	private void setTailingPixelMetadata() {
 		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = this.secretImage.getWidth();
 		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = this.secretImage.getHeight();
-		// this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 3] = this.ratio;
 	}
 
 }

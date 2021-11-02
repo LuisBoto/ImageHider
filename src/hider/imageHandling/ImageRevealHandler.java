@@ -14,9 +14,14 @@ public class ImageRevealHandler extends ImageHandler {
 		this.canvasImage = canvasImage;
 		this.canvasPixels = this.getPixelMatrix(this.canvasImage);
 		this.readSecretMetadata();
+		this.unmerge();
+		this.writeImagePixels(this.secretImage, this.secretPixels);
+		return this.secretImage;
+	}
+	
+	private void unmerge() {
 		MatrixListHandler canvasHandler = new MatrixListHandler(this.canvasPixels);
 		MatrixListHandler secretHandler = new MatrixListHandler(this.secretPixels);
-
 		int canvasPixel1, canvasPixel2, canvasCounter = 0, nextPixelPair = 0, secretPixelCount = 0;
 		while (canvasHandler.hasNextInt() && secretPixelCount < this.totalSecretPixels) {
 			if (canvasCounter == nextPixelPair) {
@@ -32,8 +37,6 @@ public class ImageRevealHandler extends ImageHandler {
 			canvasCounter++;
 		}
 		this.secretPixels = secretHandler.getMatrix();
-		this.secretImage = this.writeImagePixels(this.secretImage, this.secretPixels);
-		return this.secretImage;
 	}
 
 	private void readSecretMetadata() {

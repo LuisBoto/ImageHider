@@ -10,7 +10,7 @@ public class ImageHider {
 		if (args[0].equals("--hide")) {
 			output = "./hiddenOutput.png";
 			if (args.length == 4)
-				output = args[4];
+				output = args[3];
 			new ImageHider().hide(args[1], args[2], output);				
 		}
 		if (args[0].equals("--reveal")) {
