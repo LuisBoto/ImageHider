@@ -1,4 +1,4 @@
-package hider;
+package hider.imageHandling;
 
 public class BinaryConverter {
 
@@ -39,6 +39,24 @@ public class BinaryConverter {
 		greenCanvas = (greenCanvas & 0xf000) | (greenSecret & 0x0f00);
 		redCanvas = (redCanvas & 0xf00000) | (redSecret & 0x0f0000);
 		return redCanvas | greenCanvas | blueCanvas | alphaCanvas;
+	}
+
+	public int unmergeSecretPixel(int canvasFirstHalf, int canvasSecondHalf) {
+		int blueCanvasFirst = canvasFirstHalf & 0xff;
+		int greenCanvasFirst = (canvasFirstHalf & 0xff00);
+		int redCanvasFirst = (canvasFirstHalf & 0xff0000);
+		// int alphaCanvasFirst = (canvasFirstHalf & 0xff000000);
+
+		int blueCanvasSecond = canvasSecondHalf & 0xff;
+		int greenCanvasSecond = (canvasSecondHalf & 0xff00);
+		int redCanvasSecond = (canvasSecondHalf & 0xff0000);
+		// int alphaCanvasSecond = (canvasSecondHalf & 0xff000000);
+
+		int secretBlue, secretGreen, secretRed, secretAlpha = 0xff000000;
+		secretBlue = ((blueCanvasFirst & 0x0f) << 4) | (blueCanvasSecond & 0x0f);
+		secretGreen = ((greenCanvasFirst & 0x0f00) << 4) | (greenCanvasSecond & 0x0f00);
+		secretRed = ((redCanvasFirst & 0x0f0000) << 4) | (redCanvasSecond & 0x0f0000);
+		return secretRed | secretGreen | secretBlue | secretAlpha;
 	}
 
 }

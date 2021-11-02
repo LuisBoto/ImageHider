@@ -1,23 +1,14 @@
-package hider.pictureHiding;
+package hider.imageHandling;
 
 import java.awt.image.BufferedImage;
 
-import hider.BinaryConverter;
-import hider.Steganographer;
+public class ImageHiderHandler extends ImageHandler {
 
-public class ImageHiderHandler {
-
-	private BinaryConverter binaryConverter;
-	private BufferedImage canvasImage;
-	private BufferedImage secretImage;
 	private BufferedImage resultImage;
-	private int ratio;
-	private int[][] canvasPixels;
-	private int[][] secretPixels;
 	private int[][] resultPixels;
 
 	public ImageHiderHandler() {
-		this.binaryConverter = new BinaryConverter();
+		super();
 	}
 
 	public BufferedImage hide(BufferedImage canvasImage, BufferedImage secretImage) {
@@ -31,7 +22,7 @@ public class ImageHiderHandler {
 		
 		this.merge();
 		this.setTailingPixelMetadata();
-		this.writeResultImagePixels();
+		this.resultImage = this.writeImagePixels(this.resultImage, this.resultPixels);
 		return this.resultImage;
 	}
 
@@ -46,6 +37,7 @@ public class ImageHiderHandler {
 				secretPixel = secretHandler.getNextInt();
 				resultHandler.setNextInt(this.binaryConverter.mergeFirstHalfs(canvasHandler.getNextInt(), secretPixel));
 				resultHandler.setNextInt(this.binaryConverter.mergeSecondHalfs(canvasHandler.getNextInt(), secretPixel));
+				counter++;
 			} else {
 				canvasPixel = canvasHandler.getNextInt();
 				resultHandler.setNextInt(canvasPixel);
@@ -56,34 +48,9 @@ public class ImageHiderHandler {
 	}
 
 	private void setTailingPixelMetadata() {
-		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = this.secretImage.getHeight();
-		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = this.secretImage.getWidth();
-		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 3] = this.ratio;
-	}
-
-	private void writeResultImagePixels() {
-		for (int i = 0; i < resultImage.getWidth(); i++) {
-			for (int j = 0; j < resultImage.getHeight(); j++) {
-				this.resultImage.setRGB(i, j, this.resultPixels[i][j]);
-			}
-		}
-	}
-
-	private int getRatio() {
-		int usableCanvasPixels = (this.canvasImage.getHeight() * this.canvasImage.getWidth()) - Steganographer.METADATA_PIXELS;
-		return (usableCanvasPixels / (2 * this.secretImage.getWidth() * this.secretImage.getHeight()));
-	}
-
-	private int[][] getPixelMatrix(BufferedImage img) {
-		int width = img.getWidth();
-		int height = img.getHeight();
-		int[][] pixel = new int[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				pixel[i][j] = img.getRGB(i, j);
-			}
-		}
-		return pixel;
+		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = 0x00ffffff & this.secretImage.getWidth();
+		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = 0x00ffffff & this.secretImage.getHeight();
+		// this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 3] = this.ratio;
 	}
 
 }

@@ -19,8 +19,8 @@ public class ImageWriteReader {
 		return img;
 	}
 
-	public void writeImage(BufferedImage img) {
-		File outputfile = new File("./test.png");
+	public void writeImage(BufferedImage img, String fileName) {
+		File outputfile = new File(fileName);
 		try {
 			ImageIO.write(img, "png", outputfile);
 		} catch (IOException e) {
