@@ -6,9 +6,19 @@ public class ImageHider {
 	private Steganographer steganographer;
 
 	public static void main(String[] args) {
-		// new ImageHider().hide(args[0], args[1]);
-		new ImageHider().hide("./madre.png", "sableye.png", "test.png");
-		new ImageHider().reveal("./test.png", "salidaReveal.png");
+		String output;
+		if (args[0].equals("--hide")) {
+			output = "./hiddenOutput.png";
+			if (args.length == 4)
+				output = args[4];
+			new ImageHider().hide(args[1], args[2], output);				
+		}
+		if (args[0].equals("--reveal")) {
+			output = "./revealedOutput.png";
+			if (args.length == 3)
+				output = args[2];
+			new ImageHider().reveal(args[1], output);	
+		}
 	}
 
 	public ImageHider() {
