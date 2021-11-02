@@ -48,8 +48,8 @@ public class ImageHiderHandler extends ImageHandler {
 	}
 
 	private void setTailingPixelMetadata() {
-		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = 0x00ffffff & this.secretImage.getWidth();
-		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = 0x00ffffff & this.secretImage.getHeight();
+		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 1] = this.secretImage.getWidth();
+		this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 2] = this.secretImage.getHeight();
 		// this.resultPixels[this.resultPixels.length - 1][this.resultPixels[0].length - 3] = this.ratio;
 	}
 

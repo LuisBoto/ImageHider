@@ -7,7 +7,7 @@ public class ImageHider {
 
 	public static void main(String[] args) {
 		// new ImageHider().hide(args[0], args[1]);
-		// new ImageHider().hide("./madre.png", "sableye.png", "test.png");
+		new ImageHider().hide("./madre.png", "sableye.png", "test.png");
 		new ImageHider().reveal("./test.png", "salidaReveal.png");
 	}
 
