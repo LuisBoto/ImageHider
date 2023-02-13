@@ -12,3 +12,7 @@ This is exclusively a command line tool, fully written in pure Java. It's also d
 This project admits the following parameters on launch:
 
 ![Help parameter output](./.readme/help.png)
+
+## Video showcase
+
+https://user-images.githubusercontent.com/43352462/218427508-7cc19d21-df00-49c8-8890-1c63d86e7e7f.mp4
